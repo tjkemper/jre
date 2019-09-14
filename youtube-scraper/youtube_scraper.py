@@ -70,6 +70,7 @@ def get_video_data(soup):
     video_data["duration"] = soup.find(itemprop="duration").get("content")
     video_data["genre"] = soup.find(itemprop="genre").get("content")
     video_data["imageUrl"] = soup.find(property="og:image").get("content")
+    # TODO: interactionCount to int
     video_data["interactionCount"] = soup.find(itemprop="interactionCount").get("content")
     video_data["isFamilyFriendly"] = soup.find(itemprop="isFamilyFriendly").get("content")
     video_data["keywords"] = soup.find("meta", {"name": "keywords"}).get("content")
@@ -80,6 +81,7 @@ def get_video_data(soup):
     video_data["uploadDate"] = soup.find(itemprop="uploadDate").get("content")
     video_data["url"] = soup.find(itemprop="url").get("href")
     video_data["videoId"] = soup.find(itemprop="videoId").get("content")
+    # TODO: watchViewCount to int
     video_data["watchViewCount"] = soup.find(class_="watch-view-count").string
     return video_data
 
