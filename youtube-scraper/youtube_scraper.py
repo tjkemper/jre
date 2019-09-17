@@ -68,12 +68,14 @@ def get_video_data(soup):
     video_data["authorUrl"] = soup.find(itemprop="author").find(itemprop="url").get("href")
     video_data["channelId"] = soup.find(itemprop="channelId").get("content")
     video_data["datePublished"] = soup.find(itemprop="datePublished").get("content")
+    # TODO: Description is cut off.  Get full description.
     video_data["description"] = soup.find(itemprop="description").get("content")
     video_data["duration"] = soup.find(itemprop="duration").get("content")
     video_data["genre"] = soup.find(itemprop="genre").get("content")
     video_data["imageUrl"] = soup.find(property="og:image").get("content")
     video_data["interactionCount"] = int(soup.find(itemprop="interactionCount").get("content"))
     video_data["isFamilyFriendly"] = soup.find(itemprop="isFamilyFriendly").get("content")
+    # TODO: Keywords are cut off.  Get full list.
     video_data["keywords"] = soup.find("meta", {"name": "keywords"}).get("content")
     video_data["name"] = soup.find(itemprop="name").get("content")
     video_data["paid"] = soup.find(itemprop="paid").get("content")
