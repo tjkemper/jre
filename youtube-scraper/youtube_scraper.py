@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from bs4 import BeautifulSoup
+import os
 import requests
 import json
 from datetime import datetime
@@ -114,7 +115,10 @@ def pretty_write(data, outfile):
         json.dump(data, out, indent=4, sort_keys=True)
 
 def default_outfile(playlistTitle, currentDate):
-    return playlistTitle + constants.OUTFILE_SEPARATOR + currentDate + constants.JSON_EXTENSION
+    dest_dir = "../frontend/src/data/"
+    filename = playlistTitle + constants.OUTFILE_SEPARATOR + currentDate + constants.JSON_EXTENSION
+    dirname = os.path.dirname(__file__)
+    return os.path.join(dirname, dest_dir + filename)
 
 if __name__ == "__main__":
     scraper(constants.JRE_UPLOADS_PLAYLIST_URL)
