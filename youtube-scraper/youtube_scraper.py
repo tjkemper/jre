@@ -11,6 +11,7 @@ import constants
 # TODO: Write to file periodically to avoid memory issues (although JRE had no issues at 4.5MB and is possibly one of the larger playlists)
 # TODO: Create classes for 'data' and 'video_data'
 # TODO: Create constants for the web scraping strings (id, class, and attribute names/values)
+# TODO: Extract out podcast number into separate field
 def scraper(first_video_in_playlist_url):
     video_url = first_video_in_playlist_url
     playlist_details = get_playlist_details(video_url)
