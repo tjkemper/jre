@@ -16,7 +16,7 @@ class JreNav extends React.Component {
             height="50"
             className="d-inline-block align-top"
           />
-          <span class="h1">JRE</span>
+          <span className="h1">JRE</span>
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="#home">Search</Nav.Link>
