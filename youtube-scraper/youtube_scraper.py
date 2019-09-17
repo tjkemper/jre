@@ -69,8 +69,7 @@ def get_video_data(soup):
     video_data["authorUrl"] = soup.find(itemprop="author").find(itemprop="url").get("href")
     video_data["channelId"] = soup.find(itemprop="channelId").get("content")
     video_data["datePublished"] = soup.find(itemprop="datePublished").get("content")
-    # TODO: Description is cut off.  Get full description.
-    video_data["description"] = soup.find(itemprop="description").get("content")
+    video_data["description"] = soup.find(id="eow-description").string
     video_data["duration"] = soup.find(itemprop="duration").get("content")
     video_data["genre"] = soup.find(itemprop="genre").get("content")
     video_data["imageUrl"] = soup.find(property="og:image").get("content")
