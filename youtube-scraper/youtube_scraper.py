@@ -7,16 +7,15 @@ from datetime import datetime
 import constants
 
 # TODO: Command line options: outfile, first_video_in_playlist_url
-# TODO: Refactor to take in playlist_url (instead of first_video_in_playlist_url)
 # TODO: Write to file periodically to avoid memory issues (although JRE had no issues at 4.5MB and is possibly one of the larger playlists)
+# TODO: Retrieve only new videos (instead of full list)
 # TODO: Create classes for 'data' and 'video_data'
 # TODO: Create constants for the web scraping strings (id, class, and attribute names/values)
 # TODO: Extract out podcast number into separate field
 # TODO: Tag videos with (Official, MMA, Clip, Fight Companion) for the different styles of video
-def scraper(first_video_in_playlist_url):
-    video_url = first_video_in_playlist_url
+def scraper(playlist_url):
+    video_url = get_first_video_url(playlist_url)
     playlist_details = get_playlist_details(video_url)
-
     data = {
         "currentDate": datetime.today().strftime("%Y-%m-%d"),
         "numVideos": playlist_details["numVideos"],
@@ -47,6 +46,7 @@ def scraper(first_video_in_playlist_url):
 def get_playlist_details(video_url):
     video_html = requests.get(video_url)
     soup = BeautifulSoup(video_html.content, "html.parser")
+
     playlist_info_tag = soup.find(class_="playlist-info")
     playlist_title_tag = playlist_info_tag.find(class_="playlist-title")
     playlist_details_tag = playlist_info_tag.find(class_="playlist-details")
@@ -91,6 +91,11 @@ def get_video_data(soup):
 
     return video_data
 
+def get_first_video_url(playlist_url):
+    playlist_html = requests.get(playlist_url)
+    soup = BeautifulSoup(playlist_html.content, "html.parser")
+    return constants.YOUTUBE_URL + soup.find(class_="pl-header-play-all-overlay").get("href")
+
 # TODO: Always return https://www.youtube.com/watch?v=ZZ5LpwO-An4
 def get_next_video_url(soup):
     next_video_anchor = soup.find("a", title="Next video")
@@ -112,4 +117,4 @@ def default_outfile(playlistTitle, currentDate):
     return playlistTitle + constants.OUTFILE_SEPARATOR + currentDate + constants.JSON_EXTENSION
 
 if __name__ == "__main__":
-    scraper(constants.JRE_UPLOADS_PLAYLIST_FIRST_VIDEO_URL)
+    scraper(constants.JRE_UPLOADS_PLAYLIST_URL)
