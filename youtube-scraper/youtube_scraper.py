@@ -12,6 +12,7 @@ import constants
 # TODO: Create classes for 'data' and 'video_data'
 # TODO: Create constants for the web scraping strings (id, class, and attribute names/values)
 # TODO: Extract out podcast number into separate field
+# TODO: Tag videos with (Official, MMA, Clip, Fight Companion) for the different styles of video
 def scraper(first_video_in_playlist_url):
     video_url = first_video_in_playlist_url
     playlist_details = get_playlist_details(video_url)
@@ -71,8 +72,7 @@ def get_video_data(soup):
     video_data["duration"] = soup.find(itemprop="duration").get("content")
     video_data["genre"] = soup.find(itemprop="genre").get("content")
     video_data["imageUrl"] = soup.find(property="og:image").get("content")
-    # TODO: interactionCount to int
-    video_data["interactionCount"] = soup.find(itemprop="interactionCount").get("content")
+    video_data["interactionCount"] = int(soup.find(itemprop="interactionCount").get("content"))
     video_data["isFamilyFriendly"] = soup.find(itemprop="isFamilyFriendly").get("content")
     video_data["keywords"] = soup.find("meta", {"name": "keywords"}).get("content")
     video_data["name"] = soup.find(itemprop="name").get("content")
@@ -82,8 +82,11 @@ def get_video_data(soup):
     video_data["uploadDate"] = soup.find(itemprop="uploadDate").get("content")
     video_data["url"] = soup.find(itemprop="url").get("href")
     video_data["videoId"] = soup.find(itemprop="videoId").get("content")
-    # TODO: watchViewCount to int
-    video_data["watchViewCount"] = soup.find(class_="watch-view-count").string
+
+    watch_view_count_str = soup.find(class_="watch-view-count").string
+    watch_view_count = int(watch_view_count_str.split()[0].replace(",", ""))
+    video_data["watchViewCount"] = watch_view_count
+
     return video_data
 
 # TODO: Always return https://www.youtube.com/watch?v=ZZ5LpwO-An4
