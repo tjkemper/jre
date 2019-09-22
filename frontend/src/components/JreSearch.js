@@ -1,19 +1,25 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
-import jreData from '../data/Uploads from PowerfulJRE_2019-09-13.json';
-
-// TODO: Show count (number of videos returned in search)
-// TODO: Sort by date
-// TODO: Sort by view count
+import jreData from '../data/jre.json';
 
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/table-props.html
 class JreSearch extends React.Component {
 
   constructor(props) {
     super(props)
+    let data = [];
+    for (let [, value] of Object.entries(jreData.videos)) {
+      data.push(value);
+    }
+
+    data.sort(function(a, b) {
+      return a && b && a.datePublished > b.datePublished ? -1 : 1;
+    });
+
     this.state = {
-      dataSize: jreData.videos.length,
+      data: data,
+      dataSize: data.length,
     };
   }
 
@@ -42,6 +48,7 @@ class JreSearch extends React.Component {
         dataField: 'watchViewCount',
         text: 'View Count',
         sort: true,
+        formatter: (cell) =>  cell.toLocaleString(),
       }, {
         dataField: 'duration',
         text: 'Duration',
@@ -54,11 +61,11 @@ class JreSearch extends React.Component {
         text: 'Keywords',
       },
     ];
-    
+
     return (
       <ToolkitProvider
         keyField="videoId"
-        data={ jreData.videos }
+        data={ this.state.data }
         columns={ columns }
         search
       >
