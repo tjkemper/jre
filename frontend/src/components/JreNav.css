@@ -1,0 +1,24 @@
+.logo {
+  animation: logo-spin infinite 20s linear;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+a.nostyle:link {
+  text-decoration: inherit;
+  color: inherit;
+  /* cursor: auto; */
+}
+
+a.nostyle:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
