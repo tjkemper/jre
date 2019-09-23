@@ -1,22 +1,35 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import JreNav from './components/JreNav';
-import JreSearch from './components/JreSearch';
-import JreAnalytics from './components/JreAnalytics'
-import JreAbout from './components/JreAbout'
+import JreLoadable from './components/JreLoadable';
 
-function App() {
-  return (
-    <div className="App">
-      <Router basename="jre">
-        <JreNav />
-        <Route exact path="/" component={JreSearch} />
-        <Route path="/analytics/" component={JreAnalytics} />
-        <Route path="/about/" component={JreAbout} />
-      </Router>
-    </div>
-  );
+class App extends React.Component {
+
+  render() {
+    const Search = JreLoadable({
+      loader: () => import('./components/JreSearch'),
+    });
+    const Analytics = JreLoadable({
+      loader: () => import('./components/JreAnalytics'),
+    });
+    const About = JreLoadable({
+      loader: () => import('./components/JreAbout'),
+    });
+
+    return (
+      <div className="App">
+        <Router basename="jre">
+          <JreNav />
+          <Switch>
+            <Route exact path="/" component={Search} />
+            <Route path="/analytics/" component={Analytics} />
+            <Route path="/about/" component={About} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
