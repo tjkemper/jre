@@ -2,6 +2,7 @@ import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import jreData from '../data/jre.json';
+import moment from 'moment';
 
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/table-props.html
 class JreSearch extends React.Component {
@@ -53,6 +54,16 @@ class JreSearch extends React.Component {
         dataField: 'duration',
         text: 'Duration',
         sort: true,
+        formatter: (cell) => moment.duration(cell).asSeconds(),
+        sortFunc: (a, b, order, dataField, rowA, rowB) => {
+          const aSeconds = moment.duration(a).asSeconds();
+          const bSeconds = moment.duration(b).asSeconds();
+          console.log(order);
+          if (order === 'asc') {
+            return aSeconds - bSeconds;
+          }
+          return bSeconds - aSeconds;
+        }
       }, {
         dataField: 'description',
         text: 'Description',
