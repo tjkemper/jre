@@ -33,6 +33,9 @@ class JreCard extends React.Component {
         <Card.Body>
           <Card.Title>{this.state.video.name}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
+            {this.state.video.datePublished}
+          </Card.Subtitle>
+          <Card.Subtitle className="mb-2 text-muted">
             {this.state.durationStr}
           </Card.Subtitle>
           <Card.Text>{this.state.video.description}</Card.Text>
