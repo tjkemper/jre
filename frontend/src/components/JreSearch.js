@@ -70,6 +70,10 @@ class JreSearch extends React.Component {
       },{
         dataField: 'keywords',
         text: 'Keywords',
+      },{
+        dataField: 'isFamilyFriendly',
+        text: 'Family Friendly',
+        sort: true,
       },
     ];
 
