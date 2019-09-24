@@ -23,7 +23,8 @@ class JreNav extends React.Component {
           </Link>
         </Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link><Link to="/" className="nostyle">Search</Link></Nav.Link>
+          <Nav.Link><Link to="/" className="nostyle">Random</Link></Nav.Link>
+          <Nav.Link><Link to="/search/" className="nostyle">Search</Link></Nav.Link>
           <Nav.Link><Link to="/analytics/" className="nostyle">Analytics</Link></Nav.Link>
           <Nav.Link><Link to="/about/" className="nostyle">About</Link></Nav.Link>      
         </Nav>

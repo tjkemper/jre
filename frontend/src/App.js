@@ -7,6 +7,9 @@ import JreLoadable from './components/JreLoadable';
 class App extends React.Component {
 
   render() {
+    const Random = JreLoadable({
+      loader: () => import('./components/JreRandom'),
+    });
     const Search = JreLoadable({
       loader: () => import('./components/JreSearch'),
     });
@@ -22,7 +25,8 @@ class App extends React.Component {
         <Router basename="jre">
           <JreNav />
           <Switch>
-            <Route exact path="/" component={Search} />
+            <Route exact path="/" component={Random} />
+            <Route path="/search/" component={Search} />
             <Route path="/analytics/" component={Analytics} />
             <Route path="/about/" component={About} />
           </Switch>
