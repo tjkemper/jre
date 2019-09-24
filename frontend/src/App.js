@@ -11,7 +11,7 @@ class App extends React.Component {
       loader: () => import('./components/JreSearch'),
     });
     const Analytics = JreLoadable({
-      loader: () => import('./components/JreAnalytics'),
+      loader: () => import('./components/analytics/JreAnalytics'),
     });
     const About = JreLoadable({
       loader: () => import('./components/JreAbout'),
