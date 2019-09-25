@@ -25,7 +25,7 @@ def update_video_metadata(datafile, full_update):
 def update_worker(video_id, playlist):
     video_url = constants.YOUTUBE_VIDEO_URL_PREFIX + video_id
     response = requests.get(video_url)
-    soup = soup = BeautifulSoup(response.content, "html.parser")
+    soup = BeautifulSoup(response.content, "html.parser")
     playlist.videos[video_id] = get_video_data(soup)
     print("Updated {}".format(video_id))
 
