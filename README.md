@@ -1,6 +1,16 @@
 # JRE
 https://tjkemper.github.io/jre/
 
+## Usage
+```sh
+# Update data
+$ python3 ./youtube-scraper/youtube_scraper.py
+
+# Deploy website
+$ cd ./frontend/
+$ npm run deploy
+```
+
 ## Web scraper
 The web scraper has two parts:
 * Get video ids
@@ -40,7 +50,7 @@ full_update: If True, update all videos.  Else, only update videos that have no 
 ### Usage
 Update `./frontend/src/data/jre.json`
 ```sh
-python ./youtube-scraper/youtube_scraper.py
+python3 ./youtube-scraper/youtube_scraper.py
 ```
 
 You can also run `get_video_ids.py` and `update_video_metadata.py` individually.
