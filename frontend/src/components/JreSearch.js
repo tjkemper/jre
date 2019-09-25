@@ -1,4 +1,7 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import jreData from '../data/jre.json';
@@ -58,7 +61,6 @@ class JreSearch extends React.Component {
         sortFunc: (a, b, order, dataField, rowA, rowB) => {
           const aSeconds = moment.duration(a).asSeconds();
           const bSeconds = moment.duration(b).asSeconds();
-          console.log(order);
           if (order === 'asc') {
             return aSeconds - bSeconds;
           }
@@ -78,26 +80,32 @@ class JreSearch extends React.Component {
     ];
 
     return (
-      <ToolkitProvider
-        keyField="videoId"
-        data={ this.state.data }
-        columns={ columns }
-        search
-      >
-        {
-          props => (
-            <div>
-              <SearchBar { ...props.searchProps } />
-              <div>Results: {this.state.dataSize}</div>
-              <hr />
-              <BootstrapTable 
-                { ...props.baseProps }
-                onDataSizeChange={ this.handleDataSizeChange.bind(this) }
-              />
-            </div>
-          )
-        }
-      </ToolkitProvider>
+      <Container>
+        <Row className="m-3">
+          <Col>
+            <ToolkitProvider
+              keyField="videoId"
+              data={ this.state.data }
+              columns={ columns }
+              search
+            >
+              {
+                props => (
+                  <div>
+                    <SearchBar { ...props.searchProps } />
+                    <div>Results: {this.state.dataSize}</div>
+                    <hr />
+                    <BootstrapTable
+                      { ...props.baseProps }
+                      onDataSizeChange={ this.handleDataSizeChange.bind(this) }
+                    />
+                  </div>
+                )
+              }
+            </ToolkitProvider>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
