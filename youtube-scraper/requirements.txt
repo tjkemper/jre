@@ -20,7 +20,7 @@ mccabe==0.6.1
 numpy==1.12.1
 packaging==16.8
 pbr==3.0.0
-py==1.4.32
+py==1.10.0
 pycodestyle==2.5.0
 pyglet==1.2.4
 pylint==2.3.1
