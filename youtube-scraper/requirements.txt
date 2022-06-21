@@ -17,7 +17,7 @@ isort==4.3.21
 jmespath==0.9.2
 lazy-object-proxy==1.4.2
 mccabe==0.6.1
-numpy==1.12.1
+numpy==1.22.0
 packaging==16.8
 pbr==3.0.0
 py==1.4.32
