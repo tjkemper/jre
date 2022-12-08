@@ -5,7 +5,7 @@ autopep8==1.4.4
 beautifulsoup4==4.8.0
 boto3==1.4.4
 botocore==1.5.47
-certifi==2019.9.11
+certifi==2022.12.7
 chardet==3.0.4
 click==6.7
 -e git+https://github.com/tjkemper/data-structure-scripts.git@6b06d96bddae62950c95d774896fb92e1e9a00bc#egg=data_structure_scripts
